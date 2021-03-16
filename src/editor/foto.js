@@ -1,3 +1,5 @@
+"use strict"
+
 class Foto {
   constructor() {
     var t = this
@@ -49,6 +51,8 @@ class Foto {
       })
   }
   loadImage() {
+    const img = document.querySelector(".image_container")
+    img.classList.add("on")
     var t = document.getElementById("foto-file")
     this.selectedFileName = t.files.item(0).name
     var e = new FileReader(),

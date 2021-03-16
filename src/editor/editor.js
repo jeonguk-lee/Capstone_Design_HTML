@@ -1,7 +1,9 @@
 let foto
+let rotateRate
 
 window.onload = function () {
   foto = new Foto()
+  rotateRate = document.querySelector(".rotate_rate")
 }
 
 function selectImage() {
@@ -46,4 +48,5 @@ function flipVertically() {
 
 function rotate(item) {
   foto.rotate(item.value)
+  rotateRate.innerHTML = item.value
 }

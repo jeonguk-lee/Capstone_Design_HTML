@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="src/editor/foto.js"></script>
+    <script src="src/editor/editor.js"></script>
+    <link rel="stylesheet" href="css/editor.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section class="container">
+      <section class="file_upload_section" onclick="selectImage()">
+        <input id="foto-file" type="file" class="foto_file" />
+        이미지 선택하기
+      </section>
+
+      <section class="upper_buttons_section">
+        <button class="operation_btn crop" onclick="crop()">자르기</button>
+        <button class="operation_btn flip" onclick="flipVertically()">
+          좌우반전
+        </button>
+        <button class="operation_btn rotate">
+          <p class="rotate_text">회전</p>
+          <input
+            type="range"
+            oninput="rotate(this)"
+            id="ratate_range"
+            class="rotate_range"
+            value="0"
+            min="0"
+            max="360"
+            step="1"
+            onchange="rotate(this)"
+          />
+          <p class="rotate_rate">0</p>
+        </button>
+      </section>
+
+      <div class="image_container">
+        <img id="foto-image" class="image" />
+      </div>
+
+      <section class="buttons_section">
+        <div class="buttons_top">
+          <button class="operation_btn" onclick="makeGray()">흑백</button>
+          <button class="operation_btn" onclick="makeBright()">밝게</button>
+          <button class="operation_btn" onclick="makeDark()">어둡게</button>
+        </div>
+        <div class="buttons_bottom">
+          <button class="operation_btn" onclick="makeBlur()">블러</button>
+          <button class="operation_btn" onclick="makeEmboss()">엠보싱</button>
+          <button class="operation_btn" onclick="makeSharp()">샤프</button>
+        </div>
+        <div class="buttons_download">
+          <button class="operation_btn download_btn" onclick="download()">
+            다운로드
+          </button>
+        </div>
+      </section>
+    </section>
+  </body>
+</html>
