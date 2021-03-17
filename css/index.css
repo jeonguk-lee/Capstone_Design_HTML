@@ -34,6 +34,8 @@ body {
 
 .logo i {
   font-size: 1.7rem;
+  height: 100%;
+  margin-top: 0.3rem;
 }
 
 .logo_text {
@@ -60,7 +62,7 @@ body {
 }
 
 .main_image_box {
-  height: 72vh;
+  height: 68vh;
 }
 
 .main_image {
