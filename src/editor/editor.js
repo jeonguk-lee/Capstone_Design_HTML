@@ -1,4 +1,5 @@
 let canvas;
+let canvasBox;
 let imgLoaderBox;
 let imgLoader;
 let flipY;
@@ -6,6 +7,12 @@ let flipX;
 let rotate_left;
 let rotate_right;
 let rotate_origin;
+let crop;
+let putDraw;
+let putText;
+let putIcon;
+let putFigure;
+let discardSelect;
 let grayScale;
 let invert;
 let sepia;
@@ -16,6 +23,7 @@ let download;
 
 window.onload = () => {
   canvas = new fabric.Canvas("c");
+  canvasBox = document.querySelector(".canvas_box");
   imgLoaderBox = document.querySelector(".imgLoaderBox");
   imgLoader = document.querySelector(".imgLoader");
   flipY = document.querySelector(".flipY");
@@ -23,6 +31,12 @@ window.onload = () => {
   rotate_left = document.querySelector(".rotate_left");
   rotate_right = document.querySelector(".rotate_right");
   rotate_origin = document.querySelector(".rotate_origin");
+  crop = document.querySelector(".crop");
+  putDraw = document.querySelector(".putDraw");
+  putText = document.querySelector(".putText");
+  putIcon = document.querySelector(".putIcon");
+  putFigure = document.querySelector(".putFigure");
+  discardSelect = document.querySelector(".discardSelect");
   grayScale = document.querySelector(".grayScale");
   invert = document.querySelector(".invert");
   sepia = document.querySelector(".sepia");
@@ -35,6 +49,28 @@ window.onload = () => {
     imgLoader.click();
   });
 
+  canvasBox.addEventListener("click", () => {
+    const targeted = canvas.getActiveObject();
+    if (!targeted) {
+      grayScale.checked = false;
+      invert.checked = false;
+      sepia.checked = false;
+      bluur.checked = false;
+      bright.value = 0;
+      noise.value = 0;
+    } else {
+      targeted.filters[0]
+        ? (grayScale.checked = true)
+        : (grayScale.checked = false);
+      targeted.filters[1] ? (invert.checked = true) : (invert.checked = false);
+      targeted.filters[2] ? (sepia.checked = true) : (sepia.checked = false);
+      targeted.filters[3] ? (bluur.checked = true) : (bluur.checked = false);
+      bright.value = targeted.filters[4]["brightness"];
+      noise.value = targeted.filters[5]["noise"];
+    }
+  });
+
+  //footer button part
   flipY.addEventListener("click", () => {
     const targeted = canvas.getActiveObject();
     targeted.set("flipY", !targeted.flipY);
@@ -71,12 +107,37 @@ window.onload = () => {
     canvas.renderAll();
   });
 
+  crop.addEventListener("click", () => {
+    window.alert("기능 추가 예정입니다.");
+  });
+
+  putDraw.addEventListener("click", () => {
+    window.alert("기능 추가 예정입니다.");
+  });
+
+  putText.addEventListener("click", () => {
+    window.alert("기능 추가 예정입니다.");
+  });
+
+  putIcon.addEventListener("click", () => {
+    window.alert("기능 추가 예정입니다.");
+  });
+
+  putFigure.addEventListener("click", () => {
+    window.alert("기능 추가 예정입니다.");
+  });
+
+  discardSelect.addEventListener("click", () => {
+    canvas.discardActiveObject();
+    canvas.requestRenderAll();
+  });
+
+  //filter part
   function applyFilter(index, filter) {
     var targeted = canvas.getActiveObject();
     targeted.filters[index] = filter;
     targeted.applyFilters();
     canvas.renderAll();
-    console.log(targeted);
   }
 
   function applyFilterValue(index, prop, value, filter) {
@@ -142,6 +203,7 @@ window.onload = () => {
     );
   };
 
+  //image upload part
   imgLoader.onchange = function handleImage(e) {
     let reader = new FileReader();
     reader.onload = function (event) {
@@ -156,6 +218,10 @@ window.onload = () => {
           height: image.height,
           width: image.width,
         });
+        image.filters[4] = new fabric.Image.filters.Brightness({
+          brightness: 0,
+        });
+        image.filters[5] = new fabric.Image.filters.Noise({ noise: 0 });
         canvas.centerObject(image);
         canvas.add(image);
         canvas.renderAll();
@@ -164,6 +230,7 @@ window.onload = () => {
     reader.readAsDataURL(e.target.files[0]);
   };
 
+  //image download part
   download.addEventListener("click", saveImage, false);
 
   function saveImage(e) {

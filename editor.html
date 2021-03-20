@@ -34,7 +34,6 @@
         <a href="#" class="download">다운로드</a>
       </div>
     </header>
-
     <section class="canvas_section">
       <section class="canvas_box">
         <canvas id="c" class="canvas" width="1000" height="600"></canvas>
@@ -82,7 +81,7 @@
             type="range"
             min="0"
             max="1000"
-            step="10"
+            step="100"
             value="0"
             class="noise"
           />
@@ -90,10 +89,7 @@
       </div>
       <div class="divider"></div>
       <div class="buttons_color">
-        <p>
-          여기는 color edit 부분 / 아랫줄에 text, icon 추가 부분 구현 / 왼쪽
-          옆에는 소스이미지 기능 구현
-        </p>
+        <p>여기는 color edit 부분</p>
       </div>
     </section>
     <footer class="footer">
@@ -102,6 +98,12 @@
       <button class="footer_button rotate_left">왼쪽 90도</button>
       <button class="footer_button rotate_right">오른쪽 90도</button>
       <button class="footer_button rotate_origin">원래대로 회전</button>
+      <button class="footer_button crop">*자르기</button>
+      <button class="footer_button putDraw">*그리기</button>
+      <button class="footer_button putText">*텍스트</button>
+      <button class="footer_button putIcon">*아이콘추가</button>
+      <button class="footer_button putFigure">*도형추가</button>
+      <button class="footer_button discardSelect">선택 해제</button>
     </footer>
   </body>
 </html>
