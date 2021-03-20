@@ -5,65 +5,103 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Imager</title>
-    <script src="src/editor/foto.js"></script>
-    <script src="src/editor/editor.js"></script>
-    <link rel="stylesheet" href="css/editor.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="stylesheet" href="./css/editor.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.3.1/fabric.min.js"
+      defer
+    ></script>
+    <script src="./src/editor/editor.js"></script>
+    <script
+      src="https://kit.fontawesome.com/5cb5a09ad0.js"
+      crossorigin="anonymous"
+    ></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
-    <section class="container">
-      <section class="file_upload_section" onclick="selectImage()">
-        <input id="foto-file" type="file" class="foto_file" />
-        이미지 선택하기
-      </section>
-
-      <section class="upper_buttons_section">
-        <button class="operation_btn crop" onclick="crop()">자르기</button>
-        <button class="operation_btn flip" onclick="flipVertically()">
-          좌우반전
-        </button>
-        <button class="operation_btn rotate">
-          <p class="rotate_text">회전</p>
-          <input
-            type="range"
-            oninput="rotate(this)"
-            id="ratate_range"
-            class="rotate_range"
-            value="0"
-            min="0"
-            max="360"
-            step="1"
-            onchange="rotate(this)"
-          />
-          <p class="rotate_rate">0</p>
-        </button>
-      </section>
-
-      <div class="image_container">
-        <img id="foto-image" class="image" />
+    <header class="header">
+      <a href="./index.html" class="logo">
+        <i class="fas fa-magic"></i>
+        <h1 class="logo_text">Imager</h1>
+      </a>
+      <div class="header_buttons">
+        <section class="imgLoaderBox">
+          이미지 업로드
+          <input type="file" accept="file/image*" class="imgLoader" />
+        </section>
+        <a href="#" class="download">다운로드</a>
       </div>
+    </header>
 
-      <section class="buttons_section">
-        <div class="buttons_top">
-          <button class="operation_btn" onclick="makeGray()">흑백</button>
-          <button class="operation_btn" onclick="makeBright()">밝게</button>
-          <button class="operation_btn" onclick="makeDark()">어둡게</button>
-        </div>
-        <div class="buttons_bottom">
-          <button class="operation_btn" onclick="makeBlur()">블러</button>
-          <button class="operation_btn" onclick="makeEmboss()">엠보싱</button>
-          <button class="operation_btn" onclick="makeSharp()">샤프</button>
-        </div>
-        <div class="buttons_download">
-          <button class="operation_btn download_btn" onclick="download()">
-            다운로드
-          </button>
-        </div>
+    <section class="canvas_section">
+      <section class="canvas_box">
+        <canvas id="c" class="canvas" width="1000" height="600"></canvas>
       </section>
     </section>
+    <section class="buttons">
+      <div class="buttons_filter">
+        <div class="filter_box grayScaleBox">
+          <input type="checkbox" class="grayScale" />
+          <span>흑백</span>
+        </div>
+        <div class="filter_box invertBox">
+          <input type="checkbox" class="invert" />
+          <span>반전</span>
+        </div>
+        <div class="filter_box sepiaBox">
+          <input type="checkbox" class="sepia" />
+          <span>세피아</span>
+        </div>
+        <div class="filter_box blurBox">
+          <input type="checkbox" class="blur" />
+          <span>블러</span>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="buttons_range">
+        <div class="filter_box brightBox">
+          <div class="filter_name">
+            <span>밝기</span>
+          </div>
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.1"
+            value="0"
+            class="bright"
+          />
+        </div>
+        <div class="filter_box noiseBox">
+          <div class="filter_name">
+            <span>노이즈</span>
+          </div>
+          <input
+            type="range"
+            min="0"
+            max="1000"
+            step="10"
+            value="0"
+            class="noise"
+          />
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="buttons_color">
+        <p>
+          여기는 color edit 부분 / 아랫줄에 text, icon 추가 부분 구현 / 왼쪽
+          옆에는 소스이미지 기능 구현
+        </p>
+      </div>
+    </section>
+    <footer class="footer">
+      <button class="footer_button flipY">상하반전</button>
+      <button class="footer_button flipX">좌우반전</button>
+      <button class="footer_button rotate_left">왼쪽 90도</button>
+      <button class="footer_button rotate_right">오른쪽 90도</button>
+      <button class="footer_button rotate_origin">원래대로 회전</button>
+    </footer>
   </body>
 </html>
