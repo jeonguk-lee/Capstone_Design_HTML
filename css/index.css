@@ -109,6 +109,7 @@ body {
   border-top: 1px solid lightgray;
   font-size: 1.3rem;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .go_editor {

@@ -1,5 +1,8 @@
 let canvas;
 let canvasBox;
+let canvasItem;
+let upper_canvas;
+let lower_canvas;
 let imgLoaderBox;
 let imgLoader;
 let flipY;
@@ -13,17 +16,24 @@ let putText;
 let putIcon;
 let putFigure;
 let discardSelect;
+let removeImage;
 let grayScale;
 let invert;
 let sepia;
 let bluur;
 let bright;
 let noise;
+let canvas_width;
+let canvas_height;
+let canvas_size_button;
 let download;
 
 window.onload = () => {
   canvas = new fabric.Canvas("c");
+  upper_canvas = document.querySelector(".upper-canvas");
+  lower_canvas = document.querySelector(".lower-canvas");
   canvasBox = document.querySelector(".canvas_box");
+  canvasItem = document.querySelector(".canvas");
   imgLoaderBox = document.querySelector(".imgLoaderBox");
   imgLoader = document.querySelector(".imgLoader");
   flipY = document.querySelector(".flipY");
@@ -37,12 +47,16 @@ window.onload = () => {
   putIcon = document.querySelector(".putIcon");
   putFigure = document.querySelector(".putFigure");
   discardSelect = document.querySelector(".discardSelect");
+  removeImage = document.querySelector(".removeImage");
   grayScale = document.querySelector(".grayScale");
   invert = document.querySelector(".invert");
   sepia = document.querySelector(".sepia");
   bluur = document.querySelector(".blur");
   bright = document.querySelector(".bright");
   noise = document.querySelector(".noise");
+  canvas_width = document.querySelector(".canvas_width");
+  canvas_height = document.querySelector(".canvas_height");
+  canvas_size_button = document.querySelector(".canvas_size_button");
   download = document.querySelector(".download");
 
   imgLoaderBox.addEventListener("click", () => {
@@ -50,24 +64,7 @@ window.onload = () => {
   });
 
   canvasBox.addEventListener("click", () => {
-    const targeted = canvas.getActiveObject();
-    if (!targeted) {
-      grayScale.checked = false;
-      invert.checked = false;
-      sepia.checked = false;
-      bluur.checked = false;
-      bright.value = 0;
-      noise.value = 0;
-    } else {
-      targeted.filters[0]
-        ? (grayScale.checked = true)
-        : (grayScale.checked = false);
-      targeted.filters[1] ? (invert.checked = true) : (invert.checked = false);
-      targeted.filters[2] ? (sepia.checked = true) : (sepia.checked = false);
-      targeted.filters[3] ? (bluur.checked = true) : (bluur.checked = false);
-      bright.value = targeted.filters[4]["brightness"];
-      noise.value = targeted.filters[5]["noise"];
-    }
+    seperateEffect();
   });
 
   //footer button part
@@ -130,6 +127,15 @@ window.onload = () => {
   discardSelect.addEventListener("click", () => {
     canvas.discardActiveObject();
     canvas.requestRenderAll();
+  });
+
+  removeImage.addEventListener("click", () => {
+    const targeted = canvas.getActiveObject();
+    if (!targeted) {
+      window.alert("제거할 이미지를 먼저 선택해주세요.");
+    } else {
+      canvas.remove(targeted);
+    }
   });
 
   //filter part
@@ -203,7 +209,33 @@ window.onload = () => {
     );
   };
 
-  //image upload part
+  canvas_size_button.addEventListener("click", () => {
+    console.log(canvas_width.value, canvas_height.value);
+    if (!(canvas_width.value && canvas_height.value)) {
+      window.alert("값을 입력 하신 후에 버튼을 눌러주세요.");
+    } else if (canvas_width.value < 100 || canvas_height.value < 50) {
+      window.alert("값이 너무 작습니다. (최소크기: 너비100 높이50)");
+    } else if (canvas_width.value > 1000 || canvas_height.value > 600) {
+      window.alert(
+        "가능한 크기를 초과하였습니다. (최대크기: 너비1000 높이600)"
+      );
+      canvas_width.value = "";
+      canvas_height.value = "";
+    } else {
+      upper_canvas.style.width = `${canvas_width.value}px`;
+      upper_canvas.style.height = `${canvas_height.value}px`;
+      upper_canvas.style.marginTop = `${(600 - canvas_height.value) / 2}px`;
+      lower_canvas.style.width = `${canvas_width.value}px`;
+      lower_canvas.style.height = `${canvas_height.value}px`;
+      lower_canvas.style.marginTop = `${(600 - canvas_height.value) / 2}px`;
+      canvasBox.style.width = `${canvas_width.value}px`;
+      canvasBox.style.height = `${canvas_height.value}px`;
+      canvasItem.style.width = `${canvas_width.value}px`;
+      canvasItem.style.height = `${canvas_height.value}px`;
+    }
+  });
+
+  //image upload / download part
   imgLoader.onchange = function handleImage(e) {
     let reader = new FileReader();
     reader.onload = function (event) {
@@ -230,9 +262,9 @@ window.onload = () => {
     reader.readAsDataURL(e.target.files[0]);
   };
 
-  //image download part
   download.addEventListener("click", saveImage, false);
 
+  //function part
   function saveImage(e) {
     console.log(this);
     this.href = canvas.toDataURL({
@@ -240,5 +272,26 @@ window.onload = () => {
       quality: 1,
     });
     this.download = "canvas.png";
+  }
+
+  function seperateEffect() {
+    const targeted = canvas.getActiveObject();
+    if (!targeted) {
+      grayScale.checked = false;
+      invert.checked = false;
+      sepia.checked = false;
+      bluur.checked = false;
+      bright.value = 0;
+      noise.value = 0;
+    } else {
+      targeted.filters[0]
+        ? (grayScale.checked = true)
+        : (grayScale.checked = false);
+      targeted.filters[1] ? (invert.checked = true) : (invert.checked = false);
+      targeted.filters[2] ? (sepia.checked = true) : (sepia.checked = false);
+      targeted.filters[3] ? (bluur.checked = true) : (bluur.checked = false);
+      bright.value = targeted.filters[4]["brightness"];
+      noise.value = targeted.filters[5]["noise"];
+    }
   }
 };

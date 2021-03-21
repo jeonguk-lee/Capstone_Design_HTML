@@ -34,63 +34,85 @@
         <a href="#" class="download">다운로드</a>
       </div>
     </header>
-    <section class="canvas_section">
-      <section class="canvas_box">
-        <canvas id="c" class="canvas" width="1000" height="600"></canvas>
+    <section class="main">
+      <section class="canvas_info">
+        <div class="canvas_size">
+          <p class="canvas_size_title">캔버스 사이즈</p>
+          <div class="canvas_size_width_box">
+            <span class="canvas_size_width_name">너비</span>
+            <input type="text" class="canvas_width" />
+          </div>
+          <div class="canvas_size_height_box">
+            <span class="canvas_size_height_name">높이</span>
+            <input type="text" class="canvas_height" />
+          </div>
+          <button class="canvas_size_button">입력</button>
+        </div>
+        이 밑으로 이미지 별 z-index 조절가능한 기능 추가
       </section>
-    </section>
-    <section class="buttons">
-      <div class="buttons_filter">
-        <div class="filter_box grayScaleBox">
-          <input type="checkbox" class="grayScale" />
-          <span>흑백</span>
-        </div>
-        <div class="filter_box invertBox">
-          <input type="checkbox" class="invert" />
-          <span>반전</span>
-        </div>
-        <div class="filter_box sepiaBox">
-          <input type="checkbox" class="sepia" />
-          <span>세피아</span>
-        </div>
-        <div class="filter_box blurBox">
-          <input type="checkbox" class="blur" />
-          <span>블러</span>
-        </div>
-      </div>
-      <div class="divider"></div>
-      <div class="buttons_range">
-        <div class="filter_box brightBox">
-          <div class="filter_name">
-            <span>밝기</span>
+      <section class="middle">
+        <section class="canvas_section">
+          <section class="canvas_box">
+            <canvas id="c" class="canvas" width="1000" height="600"></canvas>
+          </section>
+        </section>
+        <section class="buttons">
+          <div class="buttons_filter">
+            <div class="filter_box grayScaleBox">
+              <input type="checkbox" class="grayScale" />
+              <span>흑백</span>
+            </div>
+            <div class="filter_box invertBox">
+              <input type="checkbox" class="invert" />
+              <span>반전</span>
+            </div>
+            <div class="filter_box sepiaBox">
+              <input type="checkbox" class="sepia" />
+              <span>세피아</span>
+            </div>
+            <div class="filter_box blurBox">
+              <input type="checkbox" class="blur" />
+              <span>블러</span>
+            </div>
           </div>
-          <input
-            type="range"
-            min="0"
-            max="1"
-            step="0.1"
-            value="0"
-            class="bright"
-          />
-        </div>
-        <div class="filter_box noiseBox">
-          <div class="filter_name">
-            <span>노이즈</span>
+          <div class="divider"></div>
+          <div class="buttons_range">
+            <div class="filter_box brightBox">
+              <div class="filter_name">
+                <span>밝기</span>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.1"
+                value="0"
+                class="bright"
+              />
+            </div>
+            <div class="filter_box noiseBox">
+              <div class="filter_name">
+                <span>노이즈</span>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="1000"
+                step="100"
+                value="0"
+                class="noise"
+              />
+            </div>
           </div>
-          <input
-            type="range"
-            min="0"
-            max="1000"
-            step="100"
-            value="0"
-            class="noise"
-          />
-        </div>
-      </div>
-      <div class="divider"></div>
-      <div class="buttons_color">
-        <p>여기는 color edit 부분</p>
-      </div>
+          <div class="divider"></div>
+          <div class="buttons_color">
+            <p>여기는 color edit 부분</p>
+          </div>
+        </section>
+      </section>
+      <section class="source_image">
+        <h1>이곳에 소스이미지</h1>
+      </section>
     </section>
     <footer class="footer">
       <button class="footer_button flipY">상하반전</button>
@@ -104,6 +126,7 @@
       <button class="footer_button putIcon">*아이콘추가</button>
       <button class="footer_button putFigure">*도형추가</button>
       <button class="footer_button discardSelect">선택 해제</button>
+      <button class="footer_button removeImage">이미지 제거</button>
     </footer>
   </body>
 </html>
