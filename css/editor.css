@@ -168,6 +168,7 @@ input {
   color: white;
   display: flex;
   flex-direction: row;
+  z-index: 1;
 }
 
 .buttons_filter {
