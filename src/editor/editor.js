@@ -38,6 +38,7 @@ let download;
 
 window.onload = () => {
   canvas = new fabric.Canvas("c");
+  canvas_section = document.querySelector(".canvas_section");
   upper_canvas = document.querySelector(".upper-canvas");
   lower_canvas = document.querySelector(".lower-canvas");
   canvasBox = document.querySelector(".canvas_box");
@@ -74,6 +75,38 @@ window.onload = () => {
   canvas_height = document.querySelector(".canvas_height");
   canvas_size_button = document.querySelector(".canvas_size_button");
   download = document.querySelector(".download");
+  let canvasSize = canvas_section.getBoundingClientRect();
+
+  upper_canvas.style.width = `${
+    canvasSize.width * 0.8 > 1000 ? 1000 : canvasSize.width * 0.8
+  }px`;
+  upper_canvas.style.height = `${
+    canvasSize.height * 0.9 > 600 ? 600 : canvasSize.height * 0.9
+  }px`;
+  upper_canvas.style.marginTop = `${
+    (600 - (canvasSize.height * 0.9 > 600 ? 600 : canvasSize.height * 0.9)) / 2
+  }px`;
+  lower_canvas.style.width = `${
+    canvasSize.width * 0.8 > 1000 ? 1000 : canvasSize.width * 0.8
+  }px`;
+  lower_canvas.style.height = `${
+    canvasSize.height * 0.9 > 600 ? 600 : canvasSize.height * 0.9
+  }px`;
+  lower_canvas.style.marginTop = `${
+    (600 - (canvasSize.height * 0.9 > 600 ? 600 : canvasSize.height * 0.9)) / 2
+  }px`;
+  canvasBox.style.width = `${
+    canvasSize.width * 0.8 > 1000 ? 1000 : canvasSize.width * 0.8
+  }px`;
+  canvasBox.style.height = `${
+    canvasSize.height * 0.9 > 600 ? 600 : canvasSize.height * 0.9
+  }px`;
+  canvasItem.style.width = `${
+    canvasSize.width * 0.8 > 1000 ? 1000 : canvasSize.width * 0.8
+  }px`;
+  canvasItem.style.height = `${
+    canvasSize.height * 0.9 > 600 ? 600 : canvasSize.height * 0.9
+  }px`;
 
   imgLoaderBox.addEventListener("click", () => {
     imgLoader.click();
