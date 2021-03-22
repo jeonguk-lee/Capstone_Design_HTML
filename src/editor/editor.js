@@ -17,12 +17,20 @@ let putIcon;
 let putFigure;
 let discardSelect;
 let removeImage;
+let blackwhite;
 let grayScale;
 let invert;
 let sepia;
-let bluur;
+let emboss;
+let vintage;
 let bright;
+let contrast;
+let bluur;
 let noise;
+let pixelate;
+let gamma_red;
+let gamma_green;
+let gamma_blue;
 let canvas_width;
 let canvas_height;
 let canvas_size_button;
@@ -48,12 +56,20 @@ window.onload = () => {
   putFigure = document.querySelector(".putFigure");
   discardSelect = document.querySelector(".discardSelect");
   removeImage = document.querySelector(".removeImage");
+  blackwhite = document.querySelector(".blackwhite");
   grayScale = document.querySelector(".grayScale");
   invert = document.querySelector(".invert");
   sepia = document.querySelector(".sepia");
-  bluur = document.querySelector(".blur");
+  emboss = document.querySelector(".emboss");
+  vintage = document.querySelector(".vintage");
   bright = document.querySelector(".bright");
+  contrast = document.querySelector(".contrast");
+  bluur = document.querySelector(".blur");
   noise = document.querySelector(".noise");
+  pixelate = document.querySelector(".pixelate");
+  gamma_red = document.querySelector(".gamma_red");
+  gamma_green = document.querySelector(".gamma_green");
+  gamma_blue = document.querySelector(".gamma_blue");
   canvas_width = document.querySelector(".canvas_width");
   canvas_height = document.querySelector(".canvas_height");
   canvas_size_button = document.querySelector(".canvas_size_button");
@@ -146,18 +162,23 @@ window.onload = () => {
     canvas.renderAll();
   }
 
-  function applyFilterValue(index, prop, value, filter) {
+  function applyFilterValue(index, prop, value) {
     let targeted = canvas.getActiveObject();
-    if (!targeted.filters[index]) {
-      targeted.filters[index] = filter;
-    }
     targeted.filters[index][prop] = value;
     targeted.applyFilters();
     canvas.renderAll();
   }
 
+  function blackwhiteOn() {
+    applyFilter(0, blackwhite.checked && new fabric.Image.filters.BlackWhite());
+  }
+
+  blackwhite.addEventListener("click", () => {
+    blackwhiteOn();
+  });
+
   function grayScaleOn() {
-    applyFilter(0, grayScale.checked && new fabric.Image.filters.Grayscale());
+    applyFilter(1, grayScale.checked && new fabric.Image.filters.Grayscale());
   }
 
   grayScale.addEventListener("change", () => {
@@ -165,7 +186,7 @@ window.onload = () => {
   });
 
   function invertOn() {
-    applyFilter(1, invert.checked && new fabric.Image.filters.Invert());
+    applyFilter(2, invert.checked && new fabric.Image.filters.Invert());
   }
 
   invert.addEventListener("change", () => {
@@ -173,40 +194,75 @@ window.onload = () => {
   });
 
   function sepiaOn() {
-    applyFilter(2, sepia.checked && new fabric.Image.filters.Sepia());
+    applyFilter(3, sepia.checked && new fabric.Image.filters.Sepia());
   }
 
   sepia.addEventListener("change", () => {
     sepiaOn();
   });
 
-  function blurOn() {
+  function embossOn() {
     applyFilter(
-      3,
-      bluur.checked && new fabric.Image.filters.Blur({ blur: 0.2 })
+      4,
+      emboss.checked &&
+        new fabric.Image.filters.Convolute({
+          matrix: [1, 1, 1, 1, 0.7, -1, -1, -1, -1],
+        })
     );
   }
 
-  bluur.addEventListener("change", () => {
-    blurOn();
+  emboss.addEventListener("change", () => {
+    embossOn();
+  });
+
+  function vintageOn() {
+    applyFilter(5, vintage.checked && new fabric.Image.filters.Vintage());
+  }
+
+  vintage.addEventListener("change", () => {
+    vintageOn();
   });
 
   bright.oninput = () => {
-    applyFilterValue(
-      4,
-      "brightness",
-      parseFloat(bright.value),
-      new fabric.Image.filters.Brightness()
-    );
+    applyFilterValue(6, "brightness", parseFloat(bright.value));
+  };
+
+  contrast.oninput = () => {
+    applyFilterValue(7, "contrast", parseFloat(contrast.value));
+  };
+
+  bluur.oninput = () => {
+    applyFilterValue(8, "blur", parseFloat(bluur.value));
   };
 
   noise.oninput = () => {
-    applyFilterValue(
-      5,
-      "noise",
-      parseFloat(noise.value),
-      new fabric.Image.filters.Noise()
-    );
+    applyFilterValue(9, "noise", parseFloat(noise.value));
+  };
+
+  pixelate.oninput = () => {
+    applyFilterValue(10, "blocksize", parseInt(pixelate.value));
+  };
+
+  gamma_red.oninput = function () {
+    let current = canvas.getActiveObject().filters[11].gamma;
+    current[0] = parseFloat(gamma_red.value);
+    current[1] = parseFloat(gamma_green.value);
+    current[2] = parseFloat(gamma_blue.value);
+    applyFilterValue(11, "gamma", current);
+  };
+  gamma_green.oninput = function () {
+    let current = canvas.getActiveObject().filters[11].gamma;
+    current[0] = parseFloat(gamma_red.value);
+    current[1] = parseFloat(gamma_green.value);
+    current[2] = parseFloat(gamma_blue.value);
+    applyFilterValue(11, "gamma", current);
+  };
+  gamma_blue.oninput = function () {
+    let current = canvas.getActiveObject().filters[11].gamma;
+    current[0] = parseFloat(gamma_red.value);
+    current[1] = parseFloat(gamma_green.value);
+    current[2] = parseFloat(gamma_blue.value);
+    applyFilterValue(11, "gamma", current);
   };
 
   canvas_size_button.addEventListener("click", () => {
@@ -250,10 +306,20 @@ window.onload = () => {
           height: image.height,
           width: image.width,
         });
-        image.filters[4] = new fabric.Image.filters.Brightness({
+        image.filters[6] = new fabric.Image.filters.Brightness({
           brightness: 0,
         });
-        image.filters[5] = new fabric.Image.filters.Noise({ noise: 0 });
+        image.filters[7] = new fabric.Image.filters.Contrast({
+          contrast: 0,
+        });
+        image.filters[8] = new fabric.Image.filters.Blur({
+          blur: 0,
+        });
+        image.filters[9] = new fabric.Image.filters.Noise({ noise: 0 });
+        image.filters[10] = new fabric.Image.filters.Pixelate({ blocksize: 1 });
+        image.filters[11] = new fabric.Image.filters.Gamma({
+          gamma: [1, 1, 1],
+        });
         canvas.centerObject(image);
         canvas.add(image);
         canvas.renderAll();
@@ -277,21 +343,41 @@ window.onload = () => {
   function seperateEffect() {
     const targeted = canvas.getActiveObject();
     if (!targeted) {
+      blackwhite.checked = false;
       grayScale.checked = false;
       invert.checked = false;
       sepia.checked = false;
-      bluur.checked = false;
+      emboss.checked = false;
+      vintage.checked = false;
       bright.value = 0;
+      contrast.value = 0;
+      bluur.value = 0;
       noise.value = 0;
+      pixelate.value = 0;
+      gamma_red.value = 0;
+      gamma_green.value = 0;
+      gamma_blue.value = 0;
     } else {
       targeted.filters[0]
+        ? (blackwhite.checked = true)
+        : (blackwhite.checked = false);
+      targeted.filters[1]
         ? (grayScale.checked = true)
         : (grayScale.checked = false);
-      targeted.filters[1] ? (invert.checked = true) : (invert.checked = false);
-      targeted.filters[2] ? (sepia.checked = true) : (sepia.checked = false);
-      targeted.filters[3] ? (bluur.checked = true) : (bluur.checked = false);
-      bright.value = targeted.filters[4]["brightness"];
-      noise.value = targeted.filters[5]["noise"];
+      targeted.filters[2] ? (invert.checked = true) : (invert.checked = false);
+      targeted.filters[3] ? (sepia.checked = true) : (sepia.checked = false);
+      targeted.filters[4] ? (emboss.checked = true) : (emboss.checked = false);
+      targeted.filters[5]
+        ? (vintage.checked = true)
+        : (vintage.checked = false);
+      bright.value = targeted.filters[6]["brightness"];
+      contrast.value = targeted.filters[7]["contrast"];
+      bluur.value = targeted.filters[8]["blur"];
+      noise.value = targeted.filters[9]["noise"];
+      pixelate.value = targeted.filters[10]["blocksize"];
+      gamma_red.value = targeted.filters[11].gamma[0];
+      gamma_green.value = targeted.filters[11].gamma[1];
+      gamma_blue.value = targeted.filters[11].gamma[2];
     }
   }
 };

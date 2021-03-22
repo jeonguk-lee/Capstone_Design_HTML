@@ -172,8 +172,11 @@ input {
 
 .buttons_filter {
   width: 25%;
-  height: 80%;
+  height: 90%;
   padding: 0.5rem 1rem 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .filter_box {
@@ -183,21 +186,43 @@ input {
 }
 
 .filter_name {
-  width: 3rem;
+  width: 4rem;
 }
 
 .buttons_range {
   width: 50%;
-  height: 80%;
+  height: 90%;
   padding: 0.5rem 1rem 0.5rem 1rem;
   border-left: 1px solid lightgray;
   border-right: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.filter_box.gammaBox {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  padding: 0.5rem;
+}
+
+.filter_name.gamma {
+  width: 100%;
+}
+
+.gamma_name {
+  font-size: 1.2rem;
+  margin-left: 1.5rem;
 }
 
 .buttons_color {
   width: 25%;
-  height: 80%;
+  height: 90%;
   padding: 0.5rem 0 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .source_image {

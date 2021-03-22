@@ -58,9 +58,13 @@
         </section>
         <section class="buttons">
           <div class="buttons_filter">
+            <div class="filter_box blackwhiteBox">
+              <input type="checkbox" class="blackwhite" />
+              <span>흑백</span>
+            </div>
             <div class="filter_box grayScaleBox">
               <input type="checkbox" class="grayScale" />
-              <span>흑백</span>
+              <span>회색조</span>
             </div>
             <div class="filter_box invertBox">
               <input type="checkbox" class="invert" />
@@ -70,9 +74,13 @@
               <input type="checkbox" class="sepia" />
               <span>세피아</span>
             </div>
-            <div class="filter_box blurBox">
-              <input type="checkbox" class="blur" />
-              <span>블러</span>
+            <div class="filter_box embossBox">
+              <input type="checkbox" class="emboss" />
+              <span>엠보싱</span>
+            </div>
+            <div class="filter_box vintageBox">
+              <input type="checkbox" class="vintage" />
+              <span>빈티지</span>
             </div>
           </div>
           <div class="divider"></div>
@@ -90,6 +98,32 @@
                 class="bright"
               />
             </div>
+            <div class="filter_box contrastBox">
+              <div class="filter_name">
+                <span>대비</span>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.1"
+                value="0"
+                class="contrast"
+              />
+            </div>
+            <div class="filter_box blurBox">
+              <div class="filter_name">
+                <span>블러</span>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.1"
+                value="0"
+                class="blur"
+              />
+            </div>
             <div class="filter_box noiseBox">
               <div class="filter_name">
                 <span>노이즈</span>
@@ -102,6 +136,57 @@
                 value="0"
                 class="noise"
               />
+            </div>
+            <div class="filter_box pixelateBox">
+              <div class="filter_name">
+                <span>픽셀강조</span>
+              </div>
+              <input
+                type="range"
+                min="1"
+                max="10"
+                step="1"
+                value="1"
+                class="pixelate"
+              />
+            </div>
+            <div class="filter_box gammaBox">
+              <div class="filter_name gamma">
+                <span class="gamma_name">감마</span>
+              </div>
+              <div class="gamma_red_box">
+                <span>빨강</span>
+                <input
+                  type="range"
+                  min="1"
+                  max="10"
+                  step="1"
+                  value="1"
+                  class="gamma_red"
+                />
+              </div>
+              <div class="gamma_green_box">
+                <span>초록</span>
+                <input
+                  type="range"
+                  min="1"
+                  max="10"
+                  step="1"
+                  value="1"
+                  class="gamma_green"
+                />
+              </div>
+              <div class="gamma_blue_box">
+                <span>파랑</span>
+                <input
+                  type="range"
+                  min="1"
+                  max="10"
+                  step="1"
+                  value="1"
+                  class="gamma_blue"
+                />
+              </div>
             </div>
           </div>
           <div class="divider"></div>
