@@ -162,16 +162,19 @@ input {
 }
 
 .buttons {
-  width: 70%;
+  width: 100%;
   height: 20%;
   background-color: rgb(41, 44, 49);
   color: white;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  z-index: 1;
 }
 
 .buttons_filter {
-  width: 25%;
+  width: 10%;
+  min-width: 200px;
   height: 90%;
   padding: 0.5rem 1rem 0.5rem 0;
   display: flex;
@@ -183,6 +186,7 @@ input {
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-bottom: 0.2rem;
 }
 
 .filter_name {
@@ -190,9 +194,10 @@ input {
 }
 
 .buttons_range {
-  width: 50%;
+  width: 30%;
+  min-width: 450px;
   height: 90%;
-  padding: 0.5rem 1rem 0.5rem 1rem;
+  padding: 0.5rem 0 0.5rem 1rem;
   border-left: 1px solid lightgray;
   border-right: 1px solid lightgray;
   display: flex;
@@ -200,24 +205,24 @@ input {
   flex-wrap: wrap;
 }
 
-.filter_box.gammaBox {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid white;
-  padding: 0.5rem;
-}
-
 .filter_name.gamma {
   width: 100%;
 }
 
 .gamma_name {
-  font-size: 1.2rem;
-  margin-left: 1.5rem;
+  margin-right: 1rem;
+}
+
+.gamma_red_box,
+.gamma_green_box,
+.gamma_blue_box {
+  display: flex;
+  flex-direction: row;
 }
 
 .buttons_color {
-  width: 25%;
+  width: 15%;
+  min-width: 200px;
   height: 90%;
   padding: 0.5rem 0 0.5rem 1rem;
   display: flex;
