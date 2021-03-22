@@ -75,7 +75,7 @@ window.onload = () => {
   canvas_height = document.querySelector(".canvas_height");
   canvas_size_button = document.querySelector(".canvas_size_button");
   download = document.querySelector(".download");
-  let canvasSizeWidth = canvas_section.getBoundingClientRect().width * 0.8;
+  let canvasSizeWidth = canvas_section.getBoundingClientRect().width * 0.75;
   let canvasSizeHeight = canvasSizeWidth * 0.6;
   upper_canvas.style.width = `${
     canvasSizeWidth > 1000 ? 1000 : canvasSizeWidth
