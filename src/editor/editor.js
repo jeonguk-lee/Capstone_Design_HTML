@@ -75,37 +75,37 @@ window.onload = () => {
   canvas_height = document.querySelector(".canvas_height");
   canvas_size_button = document.querySelector(".canvas_size_button");
   download = document.querySelector(".download");
-  let canvasSize = canvas_section.getBoundingClientRect();
-
+  let canvasSizeWidth = canvas_section.getBoundingClientRect().width * 0.8;
+  let canvasSizeHeight = canvasSizeWidth * 0.6;
   upper_canvas.style.width = `${
-    canvasSize.width * 0.8 > 1000 ? 1000 : canvasSize.width * 0.8
+    canvasSizeWidth > 1000 ? 1000 : canvasSizeWidth
   }px`;
   upper_canvas.style.height = `${
-    canvasSize.height * 0.9 > 600 ? 600 : canvasSize.height * 0.9
+    canvasSizeHeight > 600 ? 600 : canvasSizeHeight
   }px`;
   upper_canvas.style.marginTop = `${
-    (600 - (canvasSize.height * 0.9 > 600 ? 600 : canvasSize.height * 0.9)) / 2
+    (600 - (canvasSizeHeight > 600 ? 600 : canvasSizeHeight)) / 2
   }px`;
   lower_canvas.style.width = `${
-    canvasSize.width * 0.8 > 1000 ? 1000 : canvasSize.width * 0.8
+    canvasSizeWidth > 1000 ? 1000 : canvasSizeWidth
   }px`;
   lower_canvas.style.height = `${
-    canvasSize.height * 0.9 > 600 ? 600 : canvasSize.height * 0.9
+    canvasSizeHeight > 600 ? 600 : canvasSizeHeight
   }px`;
   lower_canvas.style.marginTop = `${
-    (600 - (canvasSize.height * 0.9 > 600 ? 600 : canvasSize.height * 0.9)) / 2
+    (600 - (canvasSizeHeight > 600 ? 600 : canvasSizeHeight)) / 2
   }px`;
   canvasBox.style.width = `${
-    canvasSize.width * 0.8 > 1000 ? 1000 : canvasSize.width * 0.8
+    canvasSizeWidth > 1000 ? 1000 : canvasSizeWidth
   }px`;
   canvasBox.style.height = `${
-    canvasSize.height * 0.9 > 600 ? 600 : canvasSize.height * 0.9
+    canvasSizeHeight > 600 ? 600 : canvasSizeHeight
   }px`;
   canvasItem.style.width = `${
-    canvasSize.width * 0.8 > 1000 ? 1000 : canvasSize.width * 0.8
+    canvasSizeWidth > 1000 ? 1000 : canvasSizeWidth
   }px`;
   canvasItem.style.height = `${
-    canvasSize.height * 0.9 > 600 ? 600 : canvasSize.height * 0.9
+    canvasSizeHeight > 600 ? 600 : canvasSizeHeight
   }px`;
 
   imgLoaderBox.addEventListener("click", () => {
