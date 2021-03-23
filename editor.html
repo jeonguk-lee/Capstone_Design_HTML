@@ -37,7 +37,7 @@
     <section class="main">
       <section class="canvas_info">
         <div class="canvas_size">
-          <p class="canvas_size_title">캔버스 사이즈</p>
+          <h3 class="canvas_size_title">캔버스 사이즈</h3>
           <div class="canvas_size_width_box">
             <span class="canvas_size_width_name">너비</span>
             <input type="text" class="canvas_width" />
@@ -48,7 +48,46 @@
           </div>
           <button class="canvas_size_button">입력</button>
         </div>
-        이 밑으로 이미지 별 z-index 조절가능한 기능 추가
+        <div class="textbox">
+          <h3 class="text_title">텍스트박스</h3>
+          <div class="textbox_values">
+            <select name="" id="" class="text_color">
+              <option value="black">검은색</option>
+              <option value="white">흰색</option>
+              <option value="blue">파란색</option>
+              <option value="red">빨간색</option>
+              <option value="yellow">노란색</option>
+              <option value="green">초록색</option>
+              <option value="yellowgreen">연두색</option>
+              <option value="skyblue">하늘색</option>
+              <option value="orange">주황색</option>
+              <option value="pink">분홍색</option>
+              <option value="purple">보라색</option>
+              <option value="brown">갈색</option>
+              <option value="gray">회색</option>
+              <option value="lightgray">연회색</option>
+            </select>
+            <select name="" id="" class="text_size">
+              <option value="36">36</option>
+              <option value="40">40</option>
+              <option value="44">44</option>
+              <option value="48">48</option>
+              <option value="52">52</option>
+              <option value="56">56</option>
+              <option value="60">60</option>
+              <option value="64">64</option>
+              <option value="68">68</option>
+              <option value="72">72</option>
+              <option value="76">76</option>
+              <option value="80">80</option>
+              <option value="84">84</option>
+              <option value="88">88</option>
+              <option value="92">92</option>
+              <option value="96">96</option>
+              <option value="100">100</option>
+            </select>
+          </div>
+        </div>
       </section>
       <section class="middle">
         <section class="canvas_section">
@@ -206,9 +245,8 @@
       <button class="footer_button rotate_origin">원래대로 회전</button>
       <button class="footer_button crop">*자르기</button>
       <button class="footer_button putDraw">*그리기</button>
-      <button class="footer_button putText">*텍스트</button>
+      <button class="footer_button putText">텍스트</button>
       <button class="footer_button putIcon">*아이콘추가</button>
-      <button class="footer_button putFigure">*도형추가</button>
       <button class="footer_button discardSelect">선택 해제</button>
       <button class="footer_button removeImage">이미지 제거</button>
     </footer>

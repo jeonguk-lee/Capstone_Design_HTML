@@ -14,7 +14,6 @@ let crop;
 let putDraw;
 let putText;
 let putIcon;
-let putFigure;
 let discardSelect;
 let removeImage;
 let blackwhite;
@@ -34,6 +33,8 @@ let gamma_blue;
 let canvas_width;
 let canvas_height;
 let canvas_size_button;
+let text_size;
+let text_color;
 let download;
 
 window.onload = () => {
@@ -54,7 +55,6 @@ window.onload = () => {
   putDraw = document.querySelector(".putDraw");
   putText = document.querySelector(".putText");
   putIcon = document.querySelector(".putIcon");
-  putFigure = document.querySelector(".putFigure");
   discardSelect = document.querySelector(".discardSelect");
   removeImage = document.querySelector(".removeImage");
   blackwhite = document.querySelector(".blackwhite");
@@ -74,6 +74,8 @@ window.onload = () => {
   canvas_width = document.querySelector(".canvas_width");
   canvas_height = document.querySelector(".canvas_height");
   canvas_size_button = document.querySelector(".canvas_size_button");
+  text_size = document.querySelector(".text_size");
+  text_color = document.querySelector(".text_color");
   download = document.querySelector(".download");
   let canvasSizeWidth = canvas_section.getBoundingClientRect().width * 0.75;
   let canvasSizeHeight = canvasSizeWidth * 0.6;
@@ -162,14 +164,31 @@ window.onload = () => {
   });
 
   putText.addEventListener("click", () => {
-    window.alert("기능 추가 예정입니다.");
+    let textbox = new fabric.Textbox("text", {
+      left: 50,
+      top: 50,
+      width: 150,
+      fontSize: 36,
+      fontFamily: "Quicksand",
+    });
+    console.log(textbox);
+    canvas.add(textbox).setActiveObject(textbox);
   });
+
+  text_size.oninput = () => {
+    const targeted = canvas.getActiveObject();
+    targeted.set("fontSize", parseInt(text_size.value));
+    canvas.renderAll();
+  };
+
+  text_color.oninput = () => {
+    const targeted = canvas.getActiveObject();
+    targeted.set("fill", text_color.value);
+    canvas.renderAll();
+    console.log(targeted);
+  };
 
   putIcon.addEventListener("click", () => {
-    window.alert("기능 추가 예정입니다.");
-  });
-
-  putFigure.addEventListener("click", () => {
     window.alert("기능 추가 예정입니다.");
   });
 
@@ -308,8 +327,6 @@ window.onload = () => {
       window.alert(
         "가능한 크기를 초과하였습니다. (최대크기: 너비1000 높이600)"
       );
-      canvas_width.value = "";
-      canvas_height.value = "";
     } else {
       upper_canvas.style.width = `${canvas_width.value}px`;
       upper_canvas.style.height = `${canvas_height.value}px`;
@@ -322,6 +339,8 @@ window.onload = () => {
       canvasItem.style.width = `${canvas_width.value}px`;
       canvasItem.style.height = `${canvas_height.value}px`;
     }
+    canvas_width.value = "";
+    canvas_height.value = "";
   });
 
   //image upload / download part
@@ -390,7 +409,7 @@ window.onload = () => {
       gamma_red.value = 0;
       gamma_green.value = 0;
       gamma_blue.value = 0;
-    } else {
+    } else if (targeted.filters) {
       targeted.filters[0]
         ? (blackwhite.checked = true)
         : (blackwhite.checked = false);
