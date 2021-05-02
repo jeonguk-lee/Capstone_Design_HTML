@@ -59,7 +59,7 @@ body {
 }
 
 .menu_item:hover {
-  border-bottom: 2px solid pink;
+  border-bottom: 2px solid #48bbed;
 }
 
 .main_image_box {
@@ -113,7 +113,7 @@ body {
 }
 
 .go_editor {
-  border: 2px solid pink;
+  border: 2px solid #48bbed;
   margin-bottom: 10rem;
   padding: 1.5rem 2.5rem;
   border-radius: 1rem;
@@ -165,11 +165,11 @@ body {
 
 .login_item i {
   font-size: 8rem;
-  color: pink;
+  color: #48bbed;
 }
 
 .go_login {
-  border: 2px solid pink;
+  border: 2px solid #48bbed;
   margin-top: 3rem;
   padding: 1rem 2.5rem;
   border-radius: 1rem;
@@ -198,4 +198,8 @@ body {
 
 .footer_datas {
   text-align: center;
+}
+
+.data {
+  padding: 0 0.5rem;
 }

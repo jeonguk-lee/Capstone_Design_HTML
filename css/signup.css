@@ -1,0 +1,110 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Noto Sans KR", sans-serif;
+  cursor: default;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0 0 5px 0 lightgray;
+  padding: 0 2rem;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+}
+
+.logo i {
+  font-size: 1.7rem;
+  height: 100%;
+  margin-top: 0.3rem;
+}
+
+.logo_text {
+  margin-left: 0.7rem;
+}
+
+.menu_list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  height: 2rem;
+}
+
+.menu_item {
+  margin: 0 0.5rem;
+  padding-bottom: 0.2rem;
+  cursor: pointer;
+  display: flex;
+}
+
+.menu_item a {
+  text-decoration: none;
+  color: black;
+}
+
+.menu_item:hover {
+  border-bottom: 2px solid pink;
+}
+
+.signup_title {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
+.signup_des {
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+}
+
+.signup_box {
+  width: 60%;
+  height: 75vh;
+  margin: auto;
+  margin-top: 10rem;
+  border: 1px solid lightgray;
+  padding: 3rem 5rem;
+}
+
+.signup_input {
+  width: 100%;
+  height: 35px;
+  margin: 0.6rem 0;
+  outline: none;
+  font-size: 18px;
+  padding: 0.3rem;
+  border: 1px solid rgb(168, 168, 168);
+  border-radius: 4px;
+}
+
+.signup_submit {
+  margin-top: 1rem;
+  width: 100%;
+  height: 40px;
+  font-size: 1rem;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  background-color: #48bbed;
+  color: white;
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: bolder;
+}

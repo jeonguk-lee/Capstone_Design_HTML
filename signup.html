@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/signup.css" />
+    <script src="src/index/signup.js"></script>
+    <script
+      src="https://kit.fontawesome.com/5cb5a09ad0.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <a href="./index.html" class="logo">
+        <i class="fas fa-magic"></i>
+        <h1 class="logo_text">Imager</h1>
+      </a>
+      <ul class="menu_list">
+        <li class="menu_item"><a href="./editor.html">에디터</a></li>
+        <li class="menu_item">도움말</li>
+        <li class="menu_item">로그인</li>
+      </ul>
+    </header>
+    <section class="signup_box">
+      <h1 class="signup_title">회원가입</h1>
+      <p class="signup_des">Imager의 회원이 되어보세요</p>
+      <form method="POST" class="signup" action=""><p>
+        <p><b>아이디</b></br><input type="id" class="signup_input id" name="userId" placeholder="아이디" /></p>
+        <p><b>비밀번호</b></b></br><input type="password" class="signup_input pw" name="userPw" placeholder="비밀번호" /></p>
+        <p><b>이메일</b></b></br><input type="email" class="signup_input email" name="email" placeholder="이메일" /></p>
+        <p><b>닉네임</b></b></br><input type="text" class="signup_input nickname" name="nickname" placeholder="닉네임" /></p>
+        <p><input type="submit" value="가입하기" class="signup_submit"></p>
+      </form>
+    </section>
+  </body>
+</html>

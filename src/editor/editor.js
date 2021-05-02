@@ -77,6 +77,7 @@ window.onload = () => {
   text_size = document.querySelector(".text_size");
   text_color = document.querySelector(".text_color");
   download = document.querySelector(".download");
+  canvas.uniScaleTransform = true;
   let canvasSizeWidth = canvas_section.getBoundingClientRect().width * 0.75;
   let canvasSizeHeight = canvasSizeWidth * 0.6;
   upper_canvas.style.width = `${
@@ -348,6 +349,7 @@ window.onload = () => {
     let reader = new FileReader();
     reader.onload = function (event) {
       let imgObj = new Image();
+      imgObj.lockUniScaling = true;
       imgObj.src = event.target.result;
       imgObj.onload = function () {
         let image = new fabric.Image(imgObj);
@@ -358,6 +360,7 @@ window.onload = () => {
           height: image.height,
           width: image.width,
         });
+
         image.filters[6] = new fabric.Image.filters.Brightness({
           brightness: 0,
         });
