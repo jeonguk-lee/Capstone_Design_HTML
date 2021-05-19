@@ -66,20 +66,17 @@ body {
 
 .signup_title {
   font-size: 2rem;
-  margin: 1rem 0;
-}
-
-.signup_des {
-  font-size: 1.1rem;
-  margin-bottom: 3rem;
+  margin: 1rem 0 3rem 0;
 }
 
 .signup_box {
   width: 60%;
-  height: 75vh;
+  height: 80vh;
   margin: auto;
-  margin-top: 10rem;
+  margin-top: 9rem;
   border: 1px solid lightgray;
+  border-radius: 1rem;
+  box-shadow: 1px 3px 3px 1px lightgray;
   padding: 3rem 5rem;
 }
 
@@ -92,6 +89,41 @@ body {
   padding: 0.3rem;
   border: 1px solid rgb(168, 168, 168);
   border-radius: 4px;
+  box-shadow: 1px 3px 3px 1px lightgray;
+}
+
+.signup_select_box {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0.5rem 0 2rem 0;
+}
+
+.signup_select {
+  margin-right: 2rem;
+  width: 100%;
+  height: 25px;
+  font-size: 15px;
+  outline: none;
+  border: 1px solid rgb(168, 168, 168);
+  border-radius: 4px;
+  box-shadow: 1px 3px 3px 1px lightgray;
+}
+
+.signup_select_p {
+  flex-basis: 33.3%;
+}
+
+.gender_p {
+  padding-right: 2rem;
+}
+
+.age_p {
+  padding: 0 2rem;
+}
+
+.purpose_p {
+  padding-left: 2rem;
 }
 
 .signup_submit {
@@ -107,4 +139,5 @@ body {
   border-radius: 4px;
   font-size: 20px;
   font-weight: bolder;
+  box-shadow: 1px 3px 3px 1px lightgray;
 }

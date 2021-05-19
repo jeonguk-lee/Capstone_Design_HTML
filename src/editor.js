@@ -37,6 +37,10 @@ let text_size;
 let text_color;
 let download;
 
+window.onbeforeunload = function () {
+  return "";
+};
+
 window.onload = () => {
   canvas = new fabric.Canvas("c");
   canvas_section = document.querySelector(".canvas_section");
@@ -353,9 +357,9 @@ window.onload = () => {
       imgObj.src = event.target.result;
       imgObj.onload = function () {
         let image = new fabric.Image(imgObj);
-        image.set({
+        image.scale(0.4).set({
           angle: 0,
-          padding: 10,
+          padding: 0,
           cornersize: 10,
           height: image.height,
           width: image.width,
